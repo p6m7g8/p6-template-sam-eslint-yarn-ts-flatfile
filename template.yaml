@@ -1,0 +1,29 @@
+Resources:
+  MyApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+      Cors:
+        AllowMethods: "'OPTIONS,GET,POST'"
+        AllowHeaders: "'Content-Type'"
+        AllowOrigin: "'*'"
+
+  XFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: dist/X.handler
+      Runtime: nodejs20.x
+      CodeUri: ./dist
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyApi
+            Path: /X
+            Method: post
+
+  XunctionLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/lambda/XFunctionLogGroup
+      RetentionInDays: 14
