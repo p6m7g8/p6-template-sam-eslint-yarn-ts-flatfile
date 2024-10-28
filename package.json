@@ -24,14 +24,14 @@
   "type": "module",
   "main": "src/presign.ts",
   "scripts": {
-    "all": "yarn nuke && yarn install && yarn docker && yarn sam:container && yarn run ci",
+    "all": "pnpm nuke && pnpm install && pnpm docker && pnpm sam:container && pnpm run ci",
     "bundle": "node --trace-deprecation esbuild.config.mjs",
-    "ci": "yarn run lint && yarn run test && yarn run bundle",
-    "nuke": "rm -rf .aws-sam coverage dist node_modules .yarn",
+    "ci": "pnpm run lint && pnpm run test && pnpm run bundle",
+    "nuke": "rm -rf .aws-sam coverage dist node_modules .pnpm",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "sam:api:start": "yarn run ci && sam local start-api --port 3001 --debug",
-    "sam:presign:invoke": "yarn run ci && sam local invoke PresignFunction --event events/event.json",
+    "sam:api:start": "pnpm run ci && sam local start-api --port 3001 --debug",
+    "sam:presign:invoke": "pnpm run ci && sam local invoke PresignFunction --event events/event.json",
     "test": "node --trace-deprecation ./node_modules/jest/bin/jest.js  --config jest.config.ts --coverage --passWithNoTests",
     "test:watch": "node --trace-deprecation ./node_modules/jest/bin/jest.js  --config jest.config.ts --watch --coverage",
     "type": "tsc --noEmit"
@@ -57,5 +57,5 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.6.3"
   },
-  "packageManager": "yarn@4.5.1"
+  "packageManager": "pnpm@9.12.2+sha512.22721b3a11f81661ae1ec68ce1a7b879425a1ca5b991c975b074ac220b187ce56c708fe5db69f4c962c989452eee76c82877f4ee80f474cebd61ee13461b6228"
 }
