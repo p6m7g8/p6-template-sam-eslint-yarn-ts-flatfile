@@ -1,0 +1,41 @@
+name: Build
+
+on:
+  pull_request: {}
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+      # - name: Setup Python
+      #   uses: actions/setup-python@v5.3.0
+      #   with:
+      #     python-version: '3.x'
+      # - name: Setup SAMCLI
+      #   uses: aws-actions/setup-sam@v2
+      - name: Install Node.js
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y nodejs
+          echo /opt/hostedtoolcache/node/20.18.0/x64/bin >> $GITHUB_PATH
+      - name: Install pnpm and dependencies
+        run: |
+          npm install -g pnpm
+          pnpm install
+      - name: Cache NPM dependencies
+        uses: actions/cache@v4.1.2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Run build
+        run: pnpm run ci
+      # - name: Integration Test
+      #   run: |
+      #     pnpm run sam:api:start &
+      #     pnpm run sam:presign:invoke
+      #     kill %1
