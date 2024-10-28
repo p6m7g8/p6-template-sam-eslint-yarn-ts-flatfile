@@ -2,7 +2,7 @@ import * as process from 'node:process'
 import esbuild from 'esbuild'
 
 esbuild.build({
-  entryPoints: ['./src/lambda.ts'],
+  entryPoints: ['./src/presign.ts'],
   bundle: true,
   platform: 'node',
   target: ['node20'],

@@ -8,22 +8,28 @@ Resources:
         AllowHeaders: "'Content-Type'"
         AllowOrigin: "'*'"
 
-  XFunction:
+  PresignFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: dist/X.handler
+      Handler: dist/presign.handler
       Runtime: nodejs20.x
       CodeUri: ./dist
+      Policies:
+        - S3FullAccessPolicy:
+            BucketName: !Sub "${BUCKET_NAME}"
+      Environment:
+        Variables:
+          BUCKET_NAME: !Sub "${BUCKET_NAME}"
       Events:
         ApiEvent:
           Type: Api
           Properties:
             RestApiId: !Ref MyApi
-            Path: /X
+            Path: /presign
             Method: post
 
-  XunctionLogGroup:
+  PresignFunctionLogGroup:
     Type: AWS::Logs::LogGroup
     Properties:
-      LogGroupName: /aws/lambda/XFunctionLogGroup
+      LogGroupName: /aws/lambda/PresignFunctionLogGroup
       RetentionInDays: 14

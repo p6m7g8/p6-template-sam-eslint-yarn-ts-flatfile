@@ -1,11 +1,11 @@
 {
-  "name": "p6-
-  "description": "APIGW Receiver Serverless Image Brander for LDAR Pets",
+  "name": "p6-template-sam-eslint-pnpm-ts-flatfile",
+  "description": "DESC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/luckydoganimalrescue/p6-ldar-cdk-pnp-brand-image.git"
+    "url": "https://github.com/p6m7g8/p6-template-sam-eslint-pnpm-ts-flatfile.git"
   },
-  "version": "0.3.0",
+  "version": "0.0.0",
   "author": {
     "name": "Philip M. Gollucci",
     "email": "pgollucci@p6m7g8.com",
@@ -22,23 +22,23 @@
   },
   "license": "Apache-2.0",
   "type": "module",
-  "main": "src/lambda.ts",
+  "main": "src/presign.ts",
   "scripts": {
     "all": "yarn nuke && yarn install && yarn docker && yarn sam:container && yarn run ci",
     "bundle": "node --trace-deprecation esbuild.config.mjs",
     "ci": "yarn run lint && yarn run test && yarn run bundle",
-    "docker": "docker run -it --rm -v $(pwd):/app -w /app node:20 bash -c \"rm -rf node_modules && COREPACK_ENABLE_DOWNLOAD_PROMPT=0 CI=1 corepack enable && COREPACK_ENABLE_DOWNLOAD_PROMPT=0 CI=1 yarn install\"",
     "nuke": "rm -rf .aws-sam coverage dist node_modules .yarn",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "sam:container": "sam build --use-container",
-    "sam:start:api": "yarn run ci && sam local start-api --port 3001 --debug",
-    "sam:invoke:X": "yarn run ci && sam local invoke XFunction --event events/brand.json",
+    "sam:api:start": "yarn run ci && sam local start-api --port 3001 --debug",
+    "sam:presign:invoke": "yarn run ci && sam local invoke PresignFunction --event events/event.json",
     "test": "node --trace-deprecation ./node_modules/jest/bin/jest.js  --config jest.config.ts --coverage --passWithNoTests",
     "test:watch": "node --trace-deprecation ./node_modules/jest/bin/jest.js  --config jest.config.ts --watch --coverage",
     "type": "tsc --noEmit"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.679.0",
+    "@aws-sdk/s3-request-presigner": "^3.679.0",
     "aws-lambda": "^1.0.7"
   },
   "devDependencies": {
