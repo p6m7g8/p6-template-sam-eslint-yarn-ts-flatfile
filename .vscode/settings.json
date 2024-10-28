@@ -48,5 +48,8 @@
   "typescript.updateImportsOnFileMove.enabled": "always",
   "[yaml]": {
     "editor.defaultFormatter": "redhat.vscode-yaml"
-  }
+  },
+  "cSpell.words": [
+    "presigner"
+  ]
 }
