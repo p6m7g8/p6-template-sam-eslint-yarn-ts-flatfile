@@ -42,13 +42,13 @@
     "aws-lambda": "^1.0.7"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^3.9.1",
+    "@antfu/eslint-config": "^3.9.2",
     "@swc/jest": "^0.2.37",
     "@types/aws-lambda": "^8.10.145",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.9.0",
-    "@typescript-eslint/eslint-plugin": "^8.14.0",
-    "@typescript-eslint/parser": "^8.14.0",
+    "@typescript-eslint/eslint-plugin": "^8.15.0",
+    "@typescript-eslint/parser": "^8.15.0",
     "esbuild": "^0.24.0",
     "eslint": "^9.15.0",
     "eslint-plugin-import": "^2.31.0",
