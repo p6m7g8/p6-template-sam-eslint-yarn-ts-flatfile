@@ -46,7 +46,7 @@
     "@swc/jest": "^0.2.37",
     "@types/aws-lambda": "^8.10.146",
     "@types/jest": "^29.5.14",
-    "@types/node": "^22.10.2",
+    "@types/node": "^22.10.3",
     "@typescript-eslint/eslint-plugin": "^8.19.0",
     "@typescript-eslint/parser": "^8.19.0",
     "esbuild": "^0.24.2",
